@@ -15,6 +15,7 @@ function MainPage() {
   const [allowed, setAllowed] = useState(false);
 
   const onSubmit = handleSubmit(async (values) => {
+    setAllowed(true);
     const pY = await pasanakuId();
     // const number = await getNumberPlayer(pY.data.data[0]._id);
     const pasanaku = await getPasanaku(JSON.stringify(pY.data.data));
@@ -36,7 +37,6 @@ function MainPage() {
     } else {
       setUser("No existen mas numeros para sortear");
     }
-    setAllowed(true);
   });
 
   return (
