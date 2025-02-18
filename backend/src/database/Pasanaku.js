@@ -1,6 +1,6 @@
 const Pasanaku = require('./models/Pasanaku');
 
-const pasanaku1 = new Pasanaku({year: new Date().getFullYear(), totalPlayers: 10, playersWithNumber: 2, status: true});
+const pasanaku1 = new Pasanaku({year: new Date().getFullYear(), totalPlayers: 10, playersWithNumber: 3, status: true});
 // const pasanaku2 = new Pasanaku({year: 2024, totalPlayers: 10, playersWithNumber: 10, status: true});
 
 let pasanakus = [pasanaku1];

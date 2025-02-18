@@ -2,8 +2,9 @@ const User = require("./models/User");
 
 const user1 = new User({name: "Delia", position: 1, year: 2025, status: true});
 const user2 = new User({name: "Zulma", position: 2, year: 2025, status: true});
+const user3 = new User({name: "Christian", position: 3, year: 2025, status: true});
 
-let users = [user1, user2];
+let users = [user1, user2, user3];
 
 const find = (userToFind) => {
   if(userToFind["position"]) {
