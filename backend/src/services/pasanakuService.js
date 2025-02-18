@@ -1,4 +1,5 @@
 const Pasanaku = require("../database/Pasanaku");
+const PasanakuModel = require("../database/models/Pasanaku");
 
 const getAllPasanakus = async () => {
     const allPasanakus = await Pasanaku.find({});
@@ -10,19 +11,20 @@ const getAllPasanakus = async () => {
     return pasanaku;
   };
 
-  const getOnePasanakuById = async ( pasanakuId ) => {
-    const pasanaku = await Pasanaku.findById( pasanakuId );
+  const getOnePasanakuById =  ( pasanakuId ) => {
+    const pasanaku =  Pasanaku.findById( pasanakuId );
     return pasanaku;
   };
 
-  const createNewPasanaku = async (newPasanaku) => {
-    const pasanaku = new Pasanaku(newPasanaku);
-    const createdPasanaku = await pasanaku.save();
+  const createNewPasanaku =  (newPasanaku) => {
+    // const pasanaku = new Pasanaku(newPasanaku);
+    const createdPasanaku =  Pasanaku.save(newPasanaku);
     return createdPasanaku;
   };
 
   const updateOnePasanaku = async ( pasanakuId ) => {
-    const paranaku = await Pasanaku.updateOne({ _id: pasanakuId}, {$inc: { playersWithNumber: 1 }});
+    // const paranaku = await Pasanaku.updateOne({ _id: pasanakuId}, {$inc: { playersWithNumber: 1 }});
+    const paranaku = await Pasanaku.updateOne(pasanakuId);
     return paranaku;
   }
 

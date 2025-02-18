@@ -1,12 +1,36 @@
-const mongoose = require('mongoose');
+const Pasanaku = require('./models/Pasanaku');
 
-const pasanakuSchema = new mongoose.Schema({
-  year: Number,
-  totalPlayers: Number,
-  playersWithNumber: Number,
-  status: Boolean
-});
+const pasanaku1 = new Pasanaku({year: new Date().getFullYear(), totalPlayers: 10, playersWithNumber: 2, status: true});
+// const pasanaku2 = new Pasanaku({year: 2024, totalPlayers: 10, playersWithNumber: 10, status: true});
 
-const Pasanaku = mongoose.model('Pasanaku', pasanakuSchema);
+let pasanakus = [pasanaku1];
 
-module.exports = Pasanaku;
+const find = (pasanakuToFind) => {
+  if(pasanakuToFind["year"]) {
+    return pasanakus.findIndex(pasanaku => pasanaku.year == pasanakuToFind["year"])+1;
+  }
+  return pasanakus;
+};
+
+const save = (newPasanaku) => {
+  const pasanaku = new Pasanaku(newPasanaku);
+  pasanakus.push(pasanaku);
+  return pasanakus[pasanakus.length-1];
+};
+
+const findById = (pasanakuId) => {
+  return pasanakus[pasanakuId-1];
+};
+
+const updateOne = (pasanakuId) => {
+  const pasanaku = pasanakus[pasanakuId-1];
+  pasanaku?.setPlayersWithNumber();
+  return pasanaku;
+};
+
+module.exports = {
+  find,
+  save,
+  findById,
+  updateOne,
+}

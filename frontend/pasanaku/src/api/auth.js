@@ -7,6 +7,8 @@ export const userRequest = (user) => axios.post(`${API}/users`, user);
 
 export const pasanakuId = () => axios.get(`${API}/pasanakus/${currentYear}`);
 
+export const getPasanaku = (pasanakuID) => axios.get(`${API}/pasanakus/id/${pasanakuID}`);
+
 export const getNumberPlayer = (pasanakuID) => axios.patch(`${API}/pasanakus/${pasanakuID}/getNumber`);
 
 export const updatePlayersPasanaku = (pasanakuID) => axios.patch(`${API}/pasanakus/${pasanakuID}`)

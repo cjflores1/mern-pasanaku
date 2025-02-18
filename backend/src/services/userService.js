@@ -1,4 +1,5 @@
 const User = require("../database/User");
+// const UserModel = require("../database/models/User");
 
 const getAllUsers = async () => {
     const allUsers = await User.find({});
@@ -10,8 +11,8 @@ const getAllUsers = async () => {
   };
 
   const createNewUser = async (newUser) => {
-    const user = new User(newUser);
-    const createdUser = await user.save();
+    // const user = new User(newUser);
+    const createdUser = await User.save(newUser);
     return createdUser;
   };
 
@@ -30,7 +31,8 @@ const getAllUsers = async () => {
   }
 
   const addPosition = async ( playerId, newPosition ) => {
-    await User.updateOne({ _id: playerId}, {$set: { position: newPosition}});
+    // await User.updateOne({ _id: playerId}, {$set: { position: newPosition}});
+    await User.updateOne(playerId, newPosition);
     const user = await User.findById(playerId);
     return user;
   }

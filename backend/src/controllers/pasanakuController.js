@@ -37,9 +37,11 @@ const getAllPasanakus = async (req, res) => {
 
   const getNumber = async (req, res) => {
     const { pasanakuId } = req.params;
-    console.log(`--> ${pasanakuId}`);
-    const { totalPlayers, playersWithNumber } = await pasanakuService.getOnePasanakuById(pasanakuId);
-    console.log(`--> ${totalPlayers}, ${playersWithNumber}`);
+    // console.log(`pasanakuID--> ${JSON.stringify(req.params)}`);
+    const pasanaku =  pasanakuService.getOnePasanakuById(pasanakuId);
+    const playersWithNumber = pasanaku?.playersWithNumber;
+    const totalPlayers = pasanaku?.totalPlayers;
+    // console.log(`(totalPlayers, playersWithNumber)--> ${totalPlayers}, ${playersWithNumber}`);
     if(playersWithNumber === totalPlayers) return;
     let playerNumber = 0;
     while(playerNumber === 0) {
@@ -50,8 +52,8 @@ const getAllPasanakus = async (req, res) => {
       playerNumber = playerRandomNumber.length === 0 ? randomInt : 0;
     }
     // const updatedUser = pasanakuService.updateOnePasanaku();
-    await pasanakuService.updateOnePasanaku(pasanakuId);
-    res.status(201).send({ status: "OK", data: playerNumber });
+    const resp = await pasanakuService.updateOnePasanaku(pasanakuId);
+    res.status(201).send({ status: "OK", data: {playerNumber, resp} });
   };
 
   const deleteOnePasanaku = async (req, res) => {
